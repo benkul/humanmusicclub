@@ -1,0 +1,34 @@
+{% extends 'site.html' %}
+{% block content %}
+
+
+{% if Results == "bad": %}
+You are not allowed to do that.
+
+{% elif Results: %}
+
+# display results nicely
+{{ Results }}
+
+{% else %}
+
+<form id="add" name="form-style" method="post" action="/admin">
+  <div>
+    Title
+    <input name="title" id="title" type="text"> </input>
+  </div>
+  <div>
+    Link
+    <input name="link" id="link" type="text"> </input>
+  </div>
+  <div>
+    Auth
+    <input name="auth" id="auth" type="text"> </input>
+  </div>
+  <div>
+    <button id="butts">Submit</button>
+  </div>
+</form>
+
+{% endif %}
+{% endblock %}
