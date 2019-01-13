@@ -6,7 +6,6 @@ import boto3
 import json
 import uuid
 import functools
-import datetime
 
 
 app = Flask(__name__)
@@ -22,9 +21,10 @@ def get_content():
         PaginationConfig={
             'MaxItems':10
         })
+    content = []
     for i in items:
-        for p in i['Items']:
-            content.append({'Post': [p['title']['S'], p['link']['S']]})
+    	for p in i['Items']:
+        	content.append({'Post': [p['title']['S'], p['link']['S']]})
     return content
 
 def add_content(title, link):
@@ -34,20 +34,19 @@ def add_content(title, link):
         Item = {'uid': {'S': uid},
             'title': {'S': title},
             'link': {'S': link}})
-    return content
+    return results
 
 
 @app.route('/')
 @app.route('/index')
 @app.route('/index.html')
 def index():
-    current = check_current()
     content = get_content()
     return render_template('content.html', content=content)
 
 
-
-@app.route('/admin', methods['GET', 'POST'])
+'''
+@app.route('/admin', methods=['GET', 'POST'])
 def admin():
     if request.method == 'POST':
         title = request.form.get('title')
@@ -58,7 +57,7 @@ def admin():
         results = add_content(title, link)
         return render_template('add.html', results=results)
     return render_template('add.html')
-
+'''
 
 if __name__ == '__main__':
     app.run()

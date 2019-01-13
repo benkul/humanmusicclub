@@ -2,8 +2,23 @@
 <head>
 <title> Human Music Club </title>
 {% block head %} {% endblock %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
 </head>
 
-<body>
+<!-- body background="{{ url_for('static',filename='qbkls.png') }}"-->
+
+<h1 class="f1 pa3 avenir hover-white bg-animate hover-bg-light-green"> Human Music Club </h1>
+
+<div class="flex justify-around">
+  <div class="w-10 pa3 mr2">
+  </div>
+  <div class="w-50 pa3 mr2">
+
 {% block content %} {% endblock %}
+</div>
+<div class="w-10 pa3 mr2">
+
+</div>
+</div>
+<div class="f4 pa3 avenir hover-white bg-animate hover-bg-light-green"> Welcome to the club </div>
 </body>

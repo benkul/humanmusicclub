@@ -1,15 +1,19 @@
 {% extends 'site.html' %}
 {% block content %}
-<h1> Human Music Club </h1>
+
 {% if content: %}
 {% for post in content: %}
-<div>
-  {{ post }}
-<h3> {{ post['Title'] }}</h3>
-{{ post['Code'] }}
+<div class="pa3">
+  <div class="f4 avenir">
+  {{ post['Post'][0] }}
+  </div>
+  <div class="">
+  {{ post['Post'][1] | safe }}
+  </div>
 </div>
+<div class=""></div></br>
 {% endfor %}
 {% endif %}
 
-<div> Welcome to the club </div>
+
 {% endblock %}

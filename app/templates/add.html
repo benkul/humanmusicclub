@@ -3,32 +3,38 @@
 
 
 {% if Results == "bad": %}
+  <div class="f4 avenir">
 You are not allowed to do that.
-
+</div>
 {% elif Results: %}
 
 # display results nicely
 {{ Results }}
 
 {% else %}
+<div class="pa3">
+  <div class="f4 avenir">
+    <table>
 
 <form id="add" name="form-style" method="post" action="/admin">
-  <div>
-    Title
-    <input name="title" id="title" type="text"> </input>
+  <div><tr><th></th><th></th>
+  <tr> <td>Title</td>
+  <td>  <input name="title" id="title" type="text"> </input></td></tr>
   </div>
   <div>
-    Link
-    <input name="link" id="link" type="text"> </input>
+  <tr> <td>  Link</td>
+  <td> <input name="link" id="link" type="text"> </input></td></tr>
   </div>
   <div>
-    Auth
-    <input name="auth" id="auth" type="text"> </input>
+  <tr> <td>  Auth</td>
+  <td>  <input name="auth" id="auth" type="text"> </input></td></tr>
   </div>
   <div>
-    <button id="butts">Submit</button>
+    <tr><td><button id="butts">Submit</button></td></tr>
   </div>
 </form>
+</table>
+</div><br>
 
 {% endif %}
 {% endblock %}
