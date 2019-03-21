@@ -6,12 +6,29 @@ import boto3
 import json
 import uuid
 import functools
+import time
 
 
 app = Flask(__name__)
 
-
 client = boto3.client('dynamodb', region_name='us-west-2')
+day = 86400
+cache_date = time.time()
+results = get_content()
+
+def get_current_results():
+    if check_freshness(time.time(), cache_date):
+        return get_content()
+    else:
+        return results
+
+
+def check_freshness(date_now, cache_date):
+    delta = cache_date - date_now
+    if delta > (day * 2):
+        return True
+    else:
+        return False
 
 def get_content():
     paginator = client.get_paginator('scan')
@@ -42,7 +59,7 @@ def add_content(title, link):
 @app.route('/index')
 @app.route('/index.html')
 def index():
-    content = get_content()
+    content = get_current_results()
     return render_template('content.html', content=content)
 
 
