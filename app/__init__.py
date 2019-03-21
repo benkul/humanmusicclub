@@ -18,6 +18,7 @@ results = get_content()
 
 def get_current_results():
     if check_freshness(time.time(), cache_date):
+        cache_date = time.time()
         return get_content()
     else:
         return results
