@@ -25,6 +25,7 @@ def get_content():
     for i in items:
     	for p in i['Items']:
         	content.append({'Post': [p['title']['S'], p['link']['S']]})
+    content.sort(key=lambda x: x['Post'][0], reverse=False)
     return content
 
 def add_content(title, link):
