@@ -1,0 +1,25 @@
+{% extends 'site.html' %}
+{% block content %}
+
+{% if content: %}
+
+
+{% for post in content: %}
+{% if name == post['Post'][0] %}
+  <div class="pa3">
+    <div class="f4 avenir">
+      {{ post['Post'][0] }}
+      </div>
+        <div class="">
+          {{ post['Post'][1] | safe }}
+        </div>
+      </div>
+</br>
+  {% endif %}
+{% endfor %}
+
+
+{% endif %}
+
+
+{% endblock %}

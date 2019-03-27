@@ -3,11 +3,37 @@
 <title> Human Music Club </title>
 {% block head %} {% endblock %}
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='awesomplete.css') }}" />
+<script src="{{ url_for('static',filename='awesomplete.min.js') }}" async></script>
+<script>
+function go_to(path) {
+  if (path != "/") {
+    window.location.href = "/" + document.getElementById(path).value
+  }
+  else {
+  window.location.href = "/"
+}
+}
+</script>
+
 </head>
 
-<!-- body background="{{ url_for('static',filename='qbkls.png') }}"-->
+<body>
+<div>
+<br>
+</div>
 
-<h1 class="f1 pa3 avenir hover-white bg-animate hover-bg-light-green"> Human Music Club </h1>
+<div class="f1 fw1 ttu tracked pa3 avenir hover-white bg-animate hover-bg-light-green" onclick="go_to('/')">Human Music Club </div>
+<div class="f3 pa3 avenir">
+  <input class="awesomplete" list="mylist" id="short" />
+  <datalist id="mylist">
+    {% for post in content %}
+    <option data-value={{ post['Post'][0].replace(" ", "%20") }}> {{ post['Post'][0] }} </option>
+    {% endfor %}
+  </datalist>
+    <button class="" onclick="go_to('short')"> > </button>
+</div>
+
 
 <div class="flex justify-around">
   <div class="w-10 pa3 mr2">
@@ -20,5 +46,5 @@
 
 </div>
 </div>
-<div class="f4 pa3 avenir hover-white bg-animate hover-bg-light-green"> Welcome to the club </div>
+
 </body>

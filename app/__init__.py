@@ -84,5 +84,11 @@ def admin():
     return render_template('add.html')
 '''
 
+@app.route('/<post_name>')
+def get_post(post_name):
+    content = get_current_results()
+    return render_template('name.html', content=content, name=post_name)
+
+
 if __name__ == '__main__':
     app.run()
